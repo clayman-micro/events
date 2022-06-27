@@ -37,7 +37,7 @@ jobs:
         run: tox
 
       - name: Send notification to Telegram
-        if: always()
+        if: github.event_name != 'pull_request'
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_CHAT }}
