@@ -2,14 +2,7 @@ import aiojobs
 import pytest
 from structlog.testing import capture_logs
 
-from events.config import AppConfig
 from events.transports.queue import AsyncInMemoryTransport
-
-
-@pytest.fixture(scope="session")
-def config():
-    """Config for tests."""
-    return AppConfig(defaults={"debug": False})
 
 
 @pytest.fixture(scope="function")
