@@ -1,0 +1,109 @@
+name: CI
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - 'master'
+    tags:
+      - 'v*'
+  pull_request:
+    branches:
+      - 'master'
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@master
+
+      - uses: actions/setup-python@v1
+        with:
+          python-version: '3.12'
+          architecture: 'x64'
+
+      - name: Setup PDM
+        uses: pdm-project/setup-pdm@v4
+
+      - name: Install requirements
+        # Устанавливаем зависимости
+        run: pip install tox tox-gh-actions
+
+      - name: Check with Ruff formatter.
+        env:
+          TOXENV: format
+        run: "python -m tox"
+
+  mypy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@master
+
+      - uses: actions/setup-python@v1
+        with:
+          python-version: '3.11'
+          architecture: 'x64'
+
+      - name: Setup PDM
+        uses: pdm-project/setup-pdm@v4
+
+      - name: Install requirements
+        # Устанавливаем зависимости
+        run: pip install tox tox-gh-actions
+
+      - name: Check with Mypy checker
+        env:
+          TOXENV: mypy
+        run: "python -m tox"
+
+  ruff:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@master
+
+      - uses: actions/setup-python@v1
+        with:
+          python-version: '3.11'
+          architecture: 'x64'
+
+      - name: Setup PDM
+        uses: pdm-project/setup-pdm@v4
+
+      - name: Install requirements
+        # Устанавливаем зависимости
+        run: pip install tox tox-gh-actions
+
+      - name: Check with Ruff linter
+        env:
+          TOXENV: ruff
+        run: "python -m tox"
+
+  pytest:
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@master
+
+      - uses: actions/setup-python@v1
+        with:
+          python-version: "${{ matrix.python-version }}"
+          architecture: 'x64'
+
+      - name: Setup PDM
+        uses: pdm-project/setup-pdm@v4
+
+      - name: Install requirements
+        # Устанавливаем зависимости
+        run: pip install tox tox-gh-actions
+
+      - name: Run tests
+        env:
+          POSTGRES_HOST: localhost
+        run: "python -m tox"
