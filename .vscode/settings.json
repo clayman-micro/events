@@ -1,0 +1,72 @@
+{
+  "files.exclude": {
+      ".cache": true,
+      ".idea": true,
+      ".mypy_cache": true,
+      ".python-version": true,
+      ".scannerwork": true,
+      ".sonarlint": true,
+      ".vagrant": true,
+      ".vscode": true,
+      "**/__pycache__": true,
+      "**/.cache": true,
+      "**/.coverage": true,
+      "**/.DS_Store": true,
+      "**/.idea": true,
+      "**/.mypy_cache": true,
+      "**/.ruff_cache": true,
+      "**/.pytest_cache": true,
+      "**/.sonarlint": true,
+      "**/.tox": true,
+      "**/.venv": true,
+      "**/*.egg-info": true,
+      "**/*.pdm-build": true,
+      "**/*.py[co]": true,
+      "**/*.retry": true,
+      "**/coverage*": true,
+      "**/dist": true,
+      "**/htmlcov": true,
+      "**/node_modules": true,
+      "**/pip-wheel-metadata": true,
+      "**/venv": true,
+      "**/py.typed": true
+  },
+
+  "files.watcherExclude": {
+      "**/.git/objects/**": true,
+      "**/.git/subtree-cache/**": true,
+      "**/node_modules/*/**": true
+  },
+
+  "editor.rulers": [88],
+
+  "mypy-type-checker.path": ["${workspaceFolder}/.venv/bin/mypy"],
+  "mypy-type-checker.interpreter": ["${workspaceFolder}/.venv/bin/python"],
+  "mypy-type-checker.importStrategy": "fromEnvironment",
+  "mypy-type-checker.severity": { "error": "Error", "note": "Information", "name-defined": "Warning" },
+  "mypy-type-checker.preferDaemon": true,
+  "mypy-type-checker.reportingScope": "workspace",
+
+  "python.analysis.extraPaths": [
+      "${workspaceFolder}",
+      "${workspaceFolder}/.venv/lib/python3.12",
+  ],
+
+  "python.autoComplete.extraPaths": [
+      "${workspaceFolder}",
+      "${workspaceFolder}/.venv/lib/python3.12",
+  ],
+
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
+
+  "ruff.path": ["${workspaceFolder}/.venv/bin/ruff"],
+
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll": "explicit",
+      "source.organizeImports": "explicit"
+    },
+  }
+}
