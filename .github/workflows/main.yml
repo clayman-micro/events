@@ -28,7 +28,7 @@ jobs:
 
       - name: Install requirements
         # Устанавливаем зависимости
-        run: pip install tox tox-gh-actions
+        run: pip install tox
 
       - name: Check with Ruff formatter.
         env:
@@ -51,7 +51,7 @@ jobs:
 
       - name: Install requirements
         # Устанавливаем зависимости
-        run: pip install tox tox-gh-actions
+        run: pip install tox
 
       - name: Check with Mypy checker
         env:
@@ -74,7 +74,7 @@ jobs:
 
       - name: Install requirements
         # Устанавливаем зависимости
-        run: pip install tox tox-gh-actions
+        run: pip install tox
 
       - name: Check with Ruff linter
         env:
@@ -101,9 +101,7 @@ jobs:
 
       - name: Install requirements
         # Устанавливаем зависимости
-        run: pip install tox tox-gh-actions
+        run: pip install tox tox-gh>=1.2
 
       - name: Run tests
-        env:
-          POSTGRES_HOST: localhost
         run: "python -m tox"
