@@ -28,7 +28,7 @@ jobs:
 
       - name: Install requirements
         # Устанавливаем зависимости
-        run: pip install tox
+        run: pip install --user pdm tox
 
       - name: Check with Ruff formatter.
         env:
@@ -41,7 +41,7 @@ jobs:
     steps:
       - uses: actions/checkout@master
 
-      - uses: actions/setup-python@v1
+      - uses: actions/setup-python@v4
         with:
           python-version: '3.12'
           architecture: 'x64'
@@ -51,7 +51,7 @@ jobs:
 
       - name: Install requirements
         # Устанавливаем зависимости
-        run: pip install tox
+        run: pip install --user pdm tox
 
       - name: Check with Mypy checker
         env:
@@ -64,17 +64,14 @@ jobs:
     steps:
       - uses: actions/checkout@master
 
-      - uses: actions/setup-python@v1
+      - uses: actions/setup-python@v4
         with:
           python-version: '3.12'
           architecture: 'x64'
 
-      - name: Setup PDM
-        uses: pdm-project/setup-pdm@v4
-
       - name: Install requirements
         # Устанавливаем зависимости
-        run: pip install tox
+        run: pip install --user pdm tox
 
       - name: Check with Ruff linter
         env:
@@ -91,17 +88,14 @@ jobs:
     steps:
       - uses: actions/checkout@master
 
-      - uses: actions/setup-python@v1
+      - uses: actions/setup-python@v4
         with:
           python-version: "${{ matrix.python-version }}"
           architecture: 'x64'
 
-      - name: Setup PDM
-        uses: pdm-project/setup-pdm@v4
-
       - name: Install requirements
         # Устанавливаем зависимости
-        run: pip install tox tox-gh>=1.2
+        run: pip install --user pdm tox tox-gh>=1.2
 
       - name: Run tests
         run: "python -m tox"
